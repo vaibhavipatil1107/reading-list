@@ -20,8 +20,17 @@
                 <h2>{{ $book->title }}</h2>
                 <p>Author: {{ $book->author }}</p>
                 <p>Status: {{ $book->status }}</p>
-                
+
                 <a href="{{ route('books.edit', $book) }}">Edit</a>
+
+                
+                <form action="{{ route('books.destroy', $book) }}" method="POST"
+                    onsubmit="return confirm('Are you sure you want to delete this book?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Delete</button>
+                </form>
+
             </div>
         @endforeach
     @endif
