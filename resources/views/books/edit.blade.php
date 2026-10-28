@@ -11,6 +11,18 @@
     <form action="{{ route('books.update', $book) }}" method="POST">
         @csrf
         @method('PUT')
+
+        @if ($errors->any())
+            <div>
+                <p>Please fix the following errors:</p>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         @include('books._form')
     </form>
 

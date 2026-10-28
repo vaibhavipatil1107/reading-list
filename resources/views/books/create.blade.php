@@ -10,6 +10,18 @@
 
     <form action="{{ route('books.store') }}" method="POST">
         @csrf
+
+        @if ($errors->any())
+            <div>
+                <p>Please fix the following errors:</p>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         @include('books._form')
     </form>
 
