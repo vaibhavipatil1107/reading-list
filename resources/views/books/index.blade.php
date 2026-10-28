@@ -7,6 +7,10 @@
 </head>
 <body>
     <h1>My Reading List</h1>
+    <a href="{{ route('books.create') }}">Add a Book</a>
+    @if (session('success'))
+        <p>{{ session('success') }}</p>
+    @endif
 
     @if ($books->isEmpty())
         <p>No books yet. Add your first book soon!</p>
