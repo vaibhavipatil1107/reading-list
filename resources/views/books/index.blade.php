@@ -8,6 +8,22 @@
 <body>
     <h1>My Reading List</h1>
     <a href="{{ route('books.create') }}">Add a Book</a>
+
+    
+    <form action="{{ route('books.index') }}" method="GET">
+        <label for="status">Filter by status:</label>
+
+        <select name="status" id="status">
+            <option value="">All Books</option>
+            <option value="to-read" @selected(request('status') === 'to-read')>To Read</option>
+            <option value="reading" @selected(request('status') === 'reading')>Currently Reading</option>
+            <option value="finished" @selected(request('status') === 'finished')>Finished</option>
+        </select>
+
+        <button type="submit">Filter</button>
+        <a href="{{ route('books.index') }}">Clear Filter</a>
+    </form>
+
     @if (session('success'))
         <p>{{ session('success') }}</p>
     @endif
