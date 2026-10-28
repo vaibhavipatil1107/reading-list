@@ -44,10 +44,21 @@ class BookController extends Controller
         return view('books.edit', compact('book'));
     }
 
+    
     public function update(Request $request, Book $book)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'status' => 'required|in:to-read,reading,finished',
+        ]);
+
+        $book->update($validated);
+
+        return redirect()->route('books.index')
+            ->with('success', 'Book updated successfully!');
     }
+
 
     public function destroy(Book $book)
     {
